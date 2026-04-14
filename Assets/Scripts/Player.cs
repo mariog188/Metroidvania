@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     [Header("Movement Variables")]
-    public float speed = 5;
+    public float walkSpeed = 5;
+    public float runSpeed = 9;
     public float jumpForce = 20;
     public float jumpCutMultiplier = .5f;
     public float normalGravity;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
 
     // Inputs
     private Vector2 moveInput;
+    private bool runPressed;
     private bool jumpPressed;
     private bool jumpReleased;
 
@@ -51,7 +53,8 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        float targetSpeed = moveInput.x * speed;
+        float currentSpeed = runPressed ? runSpeed : walkSpeed;
+        float targetSpeed = moveInput.x * currentSpeed;
         rigidbody2D.linearVelocity = new Vector2(targetSpeed, rigidbody2D.linearVelocity.y);
     }
 
@@ -113,13 +116,20 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("yVelocity", rigidbody2D.linearVelocity.y);
 
-        animator.SetBool("isIdle", Math.Abs(moveInput.x) < .1f && isGrounded);
-        animator.SetBool("isWalking", Math.Abs(moveInput.x) > .1f && isGrounded);
+        bool isMoving = Mathf.Abs(moveInput.x) > .1f && isGrounded;
+        animator.SetBool("isIdle", !isMoving && isGrounded);
+        animator.SetBool("isWalking", isMoving && !runPressed);
+        animator.SetBool("isRunning", isMoving && runPressed);
     }
 
     public void OnMove(InputValue input)
     {
         moveInput = input.Get<Vector2>();
+    }
+
+    public void OnRun(InputValue value)
+    {
+        runPressed = value.isPressed;
     }
 
     public void OnJump(InputValue value)
