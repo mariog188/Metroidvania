@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        TryStandUp();
         if (!isSliding)
             Flip();
         HandleAnimations();
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
             {
                 isSliding = false;
                 slideStoptimer = slideStopDuration;
-                SetColliderNormal();
+                TryStandUp();
             }
         }
 
@@ -151,7 +152,23 @@ public class Player : MonoBehaviour
 
     void TryStandUp()
     {
+        if (isSliding)
+        {
+            animator.SetBool("isCrouching", false);
+            return;
+        }
 
+        bool shouldCrouch = moveInput.y <= -.1f || Physics2D.OverlapCircle(headCheck.position, headCheckRadius, groundLayer);
+
+        if (!shouldCrouch)
+        {
+            SetColliderNormal();
+            animator.SetBool("isCrouching", false);
+        } else
+        {
+            SetColliderSlide();
+            animator.SetBool("isCrouching", true);
+        }
     }
 
     private void ApplyVariableGravity()
@@ -189,6 +206,8 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
+        bool isCrouching = animator.GetBool("isCrouching");
+
         animator.SetBool("isJumping", rigidbody2D.linearVelocity.y > .1f);
         animator.SetBool("isGrounded", isGrounded);
         animator.SetBool("isSliding", isSliding);
@@ -196,9 +215,9 @@ public class Player : MonoBehaviour
         animator.SetFloat("yVelocity", rigidbody2D.linearVelocity.y);
 
         bool isMoving = Mathf.Abs(moveInput.x) > .1f && isGrounded;
-        animator.SetBool("isIdle", !isMoving && isGrounded && !isSliding);
-        animator.SetBool("isWalking", isMoving && !runPressed && !isSliding);
-        animator.SetBool("isRunning", isMoving && runPressed && !isSliding);
+        animator.SetBool("isIdle", !isMoving && isGrounded && !isSliding && !isCrouching);
+        animator.SetBool("isWalking", isMoving && !runPressed && !isSliding && !isCrouching);
+        animator.SetBool("isRunning", isMoving && runPressed && !isSliding && !isCrouching);
     }
 
     public void OnMove(InputValue input)
@@ -227,5 +246,8 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(headCheck.position, headCheckRadius);
     }
 }
