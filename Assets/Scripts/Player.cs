@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     public PlayerInput playerInput;
     public Animator animator;
+    public CapsuleCollider2D playerCollider;
 
     [Header("Movement Variables")]
     public float walkSpeed = 5;
@@ -32,6 +33,26 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     private bool isGrounded;
 
+    [Header("Slide Settings")]
+    public Transform headCheck;
+    public float headCheckRadius = .2f;
+
+    [Header("Slide Settings")]
+    public float slideDuration = .6f;
+    public float slideSpeed = 12;
+    public float slideStopDuration = .15f;
+
+    public float slideHeight;
+    public Vector2 slideOffset;
+    public float normalHeight;
+    public Vector2 normalOffset;
+
+    private bool isSliding;
+    private bool slideInputLocked;
+    private float sliderTimer;
+    private float slideStoptimer;
+
+
     private void Start()
     {
         rigidbody2D.gravityScale = normalGravity;
@@ -39,15 +60,18 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Flip();
+        if (!isSliding)
+            Flip();
         HandleAnimations();
+        HandleSlide();
     }
 
     private void FixedUpdate()
     {
         ApplyVariableGravity();
         CheckGrounded();
-        HandleMovement();
+        if (!isSliding)
+            HandleMovement();
         HandleJump();
     }
 
@@ -74,6 +98,60 @@ public class Player : MonoBehaviour
             }
             jumpReleased = false;
         }
+    }
+
+    private void HandleSlide()
+    {
+        if (isSliding)
+        {
+            sliderTimer -= Time.deltaTime;
+            rigidbody2D.linearVelocity = new Vector2(slideSpeed * facingDirection, rigidbody2D.linearVelocity.y);
+
+            // if we are done sliding
+            if (sliderTimer <= 0)
+            {
+                isSliding = false;
+                slideStoptimer = slideStopDuration;
+                SetColliderNormal();
+            }
+        }
+
+        if (slideStoptimer > 0)
+        {
+            slideStoptimer -= Time.deltaTime;
+            rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y);
+        }
+
+        // start the slide
+        if (isGrounded && runPressed && moveInput.y < -.1f && !isSliding && !slideInputLocked)
+        {
+            isSliding = true;
+            slideInputLocked = true;
+            sliderTimer = slideDuration;
+            SetColliderSlide();
+        }
+
+        if (slideStoptimer < 0 && moveInput.y >= -.1f)
+        {
+            slideInputLocked = false;
+        }
+    }
+
+    private void SetColliderSlide()
+    {
+        playerCollider.size = new Vector2(playerCollider.size.x, slideHeight);
+        playerCollider.offset = slideOffset;
+    }
+
+    private void SetColliderNormal()
+    {
+        playerCollider.size = new Vector2(playerCollider.size.x, normalHeight);
+        playerCollider.offset = normalOffset;
+    }
+
+    void TryStandUp()
+    {
+
     }
 
     private void ApplyVariableGravity()
@@ -113,13 +191,14 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("isJumping", rigidbody2D.linearVelocity.y > .1f);
         animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isSliding", isSliding);
 
         animator.SetFloat("yVelocity", rigidbody2D.linearVelocity.y);
 
         bool isMoving = Mathf.Abs(moveInput.x) > .1f && isGrounded;
-        animator.SetBool("isIdle", !isMoving && isGrounded);
-        animator.SetBool("isWalking", isMoving && !runPressed);
-        animator.SetBool("isRunning", isMoving && runPressed);
+        animator.SetBool("isIdle", !isMoving && isGrounded && !isSliding);
+        animator.SetBool("isWalking", isMoving && !runPressed && !isSliding);
+        animator.SetBool("isRunning", isMoving && runPressed && !isSliding);
     }
 
     public void OnMove(InputValue input)
