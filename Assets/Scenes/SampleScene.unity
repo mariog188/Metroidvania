@@ -10066,11 +10066,16 @@ MonoBehaviour:
   fallGravity: 9
   jumpGravity: 4
   facingDirection: 1
+  moveInput: {x: 0, y: 0}
+  runPressed: 0
+  jumpPressed: 0
+  jumpReleased: 0
   groundCheck: {fileID: 992226877}
   groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isGrounded: 0
   headCheck: {fileID: 508942649}
   headCheckRadius: 0.4
   slideDuration: 0.6
