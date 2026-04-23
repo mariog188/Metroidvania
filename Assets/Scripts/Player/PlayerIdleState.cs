@@ -9,6 +9,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("o IdleState");
         anim.SetBool("isIdle", true);
         rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y);
     }
@@ -16,7 +17,11 @@ public class PlayerIdleState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (JumpPressed)
+        if (AttackPressed && combat.canAttack)
+        {
+            player.ChangeState(player.attackState);
+        }
+        else if (JumpPressed)
         {
             JumpPressed = false;
             player.ChangeState(player.jumpState);

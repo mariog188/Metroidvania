@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -11,6 +12,10 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState;
     public PlayerSlideState slideState;
     public PlayerCrouchState crouchState;
+    public PlayerAttackState attackState;
+
+    [Header("Core Components")]
+    public Combat combat;
 
     [Header("Components")]
     public Rigidbody2D rigidbody2D;
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
     public bool runPressed;
     public bool jumpPressed;
     public bool jumpReleased;
+    public bool attackPressed;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -64,6 +70,7 @@ public class Player : MonoBehaviour
         moveState = new PlayerMoveState(this);
         crouchState = new PlayerCrouchState(this);
         slideState = new PlayerSlideState(this);
+        attackState = new PlayerAttackState(this);
     }
 
     private void Start()
@@ -158,9 +165,20 @@ public class Player : MonoBehaviour
         animator.SetFloat("yVelocity", rigidbody2D.linearVelocity.y);
     }
 
+    public void AttackAnimationfinished()
+    {
+        currentState.AttackAnimationFinished();
+    }
+
     public void OnMove(InputValue input)
     {
         moveInput = input.Get<Vector2>();
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        attackPressed = value.isPressed;
+
     }
 
     public void OnRun(InputValue value)
