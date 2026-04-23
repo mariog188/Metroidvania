@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerIdleState idleState;
     public PlayerJumpState jumpState;
     public PlayerMoveState moveState;
+    public PlayerSlideState slideState;
     public PlayerCrouchState crouchState;
 
     [Header("Components")]
@@ -55,9 +56,6 @@ public class Player : MonoBehaviour
     public Vector2 normalOffset;
 
     private bool isSliding;
-    private bool slideInputLocked;
-    private float sliderTimer;
-    private float slideStoptimer;
 
     private void Awake()
     {
@@ -65,6 +63,7 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this);
         moveState = new PlayerMoveState(this);
         crouchState = new PlayerCrouchState(this);
+        slideState = new PlayerSlideState(this);
     }
 
     private void Start()
@@ -82,7 +81,6 @@ public class Player : MonoBehaviour
         if (!isSliding)
             Flip();
         HandleAnimations();
-        HandleSlide();
     }
 
     private void FixedUpdate()
@@ -100,42 +98,6 @@ public class Player : MonoBehaviour
 
         currentState = newState;
         currentState.Enter();
-    }
-
-    private void HandleSlide()
-    {
-        if (isSliding)
-        {
-            sliderTimer -= Time.deltaTime;
-            rigidbody2D.linearVelocity = new Vector2(slideSpeed * facingDirection, rigidbody2D.linearVelocity.y);
-
-            // if we are done sliding
-            if (sliderTimer <= 0)
-            {
-                isSliding = false;
-                slideStoptimer = slideStopDuration;
-            }
-        }
-
-        if (slideStoptimer > 0)
-        {
-            slideStoptimer -= Time.deltaTime;
-            rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y);
-        }
-
-        // start the slide
-        if (isGrounded && runPressed && moveInput.y < -.1f && !isSliding && !slideInputLocked)
-        {
-            isSliding = true;
-            slideInputLocked = true;
-            sliderTimer = slideDuration;
-            SetColliderSlide();
-        }
-
-        if (slideStoptimer < 0 && moveInput.y >= -.1f)
-        {
-            slideInputLocked = false;
-        }
     }
 
     public void SetColliderSlide()
@@ -192,11 +154,7 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
-        bool isCrouching = animator.GetBool("isCrouching");
-
         animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isSliding", isSliding);
-
         animator.SetFloat("yVelocity", rigidbody2D.linearVelocity.y);
     }
 

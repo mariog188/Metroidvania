@@ -21,6 +21,9 @@ public class PlayerMoveState : PlayerState
         else if (Mathf.Abs(MoveInput.x) < .1f)
         {
             player.ChangeState(player.idleState);
+        } else if (player.isGrounded && RunPressed && MoveInput.y < -.1f)
+        {
+            player.ChangeState(player.slideState);
         }
         else
         {

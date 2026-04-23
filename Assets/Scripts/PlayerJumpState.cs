@@ -20,7 +20,7 @@ public class PlayerJumpState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (player.isGrounded && rigidbody2D.linearVelocity.y < 0.1)
+        if (player.isGrounded && rigidbody2D.linearVelocity.y <= 0.1)
         {
             player.ChangeState(player.idleState);
         }

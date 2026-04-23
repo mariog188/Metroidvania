@@ -10881,11 +10881,11 @@ MonoBehaviour:
   - layer: {fileID: 1435250490}
     parallaxFactor: 0.7
   - layer: {fileID: 430556256}
-    parallaxFactor: 0.8
+    parallaxFactor: 0.4
   - layer: {fileID: 286331376}
-    parallaxFactor: 0.9
+    parallaxFactor: 0.5
   - layer: {fileID: 428427955}
-    parallaxFactor: 1
+    parallaxFactor: 0.4
   camTransform: {fileID: 519420032}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
