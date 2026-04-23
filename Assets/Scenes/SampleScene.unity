@@ -334,6 +334,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   animator: {fileID: 318917923}
   health: {fileID: 318917921}
+  deathParts:
+  - {fileID: 971386989956870301, guid: 6cc39fe10f6242a4a9f3c38825c2128e, type: 3}
+  - {fileID: 1067985780812775250, guid: e24e84e6f9e5a2e4499cbde2d8420853, type: 3}
+  - {fileID: 5337150590523456934, guid: 0baea3298d600104282615348d43c66d, type: 3}
+  - {fileID: 1573867612854153089, guid: 3ad81bd9673ba094aab9565e6a7bc129, type: 3}
+  - {fileID: 8306311613999951369, guid: 5dc2c920b5aa63e419b1dbda61ce85fc, type: 3}
+  spawnForce: 10
+  torque: 10
+  lifetime: 3
 --- !u!114 &318917921
 MonoBehaviour:
   m_ObjectHideFlags: 0
