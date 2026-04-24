@@ -17,7 +17,12 @@ public class PlayerIdleState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (AttackPressed && combat.canAttack)
+
+        if (SpellcastPressed && magic.CanCast)
+        {
+            player.ChangeState(player.spellcastState);
+        }
+        else if (AttackPressed && combat.canAttack)
         {
             player.ChangeState(player.attackState);
         }
@@ -25,10 +30,12 @@ public class PlayerIdleState : PlayerState
         {
             JumpPressed = false;
             player.ChangeState(player.jumpState);
-        } else if (Mathf.Abs(MoveInput.x) > .1f)
+        }
+        else if (Mathf.Abs(MoveInput.x) > .1f)
         {
             player.ChangeState(player.moveState);
-        } else if (MoveInput.y < -.1f)
+        }
+        else if (MoveInput.y < -.1f)
         {
             player.ChangeState(player.crouchState);
         }

@@ -14,7 +14,7 @@ public class PlayerAttackState : PlayerState
         rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y); // Stop horizontal movement when attacking
     }
 
-    public override void AttackAnimationFinished()
+    public override void AnimationFinished()
     {
         if (Mathf.Abs(MoveInput.x) > .1f)
         {
