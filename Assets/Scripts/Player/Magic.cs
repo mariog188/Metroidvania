@@ -4,12 +4,18 @@ using UnityEngine;
 public class Magic : MonoBehaviour
 {
     public Player player;
-    public float spellrange;
 
+    [Header("Teleport Variables")]
+    public float spellrange;
     public float spellCooldown;
     public LayerMask obstacleLayer;
-
     public float playerRadius = 1.5f;
+
+    [Header("Spark Variables")]
+    public GameObject sparkFXPrefab;
+    public int damage;
+    public float damageRadius = 5;
+    public LayerMask enemyLayer;
 
     public bool CanCast => Time.time >= nextCastTime;
     public float nextCastTime;
@@ -22,11 +28,15 @@ public class Magic : MonoBehaviour
 
     private void CastSpell()
     {
-        Teleport();
+        //Teleport();
+        Spark();
     }
 
     private void Teleport()
     {
+        if (!CanCast)
+            return;
+
         Vector2 direction = new Vector2(player.facingDirection, 0);
         Vector2 targetPosition = (Vector2)player.transform.position + direction * spellrange;
 
@@ -45,6 +55,31 @@ public class Magic : MonoBehaviour
         }
 
         player.transform.position = targetPosition;
+        nextCastTime = Time.time + spellCooldown;
+    }
+
+    private void Spark()
+    {
+        if (!CanCast)
+            return;
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(player.transform.position, damageRadius, enemyLayer);
+
+        foreach (Collider2D enemy in enemies)
+        {
+            Health health = enemy.GetComponent<Health>();
+            if (health != null)
+            {
+                health.ChangeHealth(-damage);
+            }
+
+            if (sparkFXPrefab != null)
+            {
+                GameObject newfX = Instantiate(sparkFXPrefab, enemy.transform.position, Quaternion.identity);
+                Destroy(newfX, 2);
+            }
+        }
+
         nextCastTime = Time.time + spellCooldown;
     }
 }
