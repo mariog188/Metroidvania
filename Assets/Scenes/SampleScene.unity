@@ -11129,6 +11129,7 @@ GameObject:
   - component: {fileID: 1675935799}
   - component: {fileID: 1675935800}
   - component: {fileID: 1675935801}
+  - component: {fileID: 1675935802}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -11275,6 +11276,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   nextCastTime: 0
+--- !u!114 &1675935802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675935796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017994e1b215a7046a94d60fc3df6b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  health: 0
+  maxHealth: 0
 --- !u!1 &1698133790
 GameObject:
   m_ObjectHideFlags: 0
@@ -11392,6 +11407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   combat: {fileID: 1675935800}
   magic: {fileID: 1675935801}
+  health: {fileID: 1675935802}
   rigidbody2D: {fileID: 1698133792}
   playerInput: {fileID: 1698133795}
   animator: {fileID: 1675935799}
