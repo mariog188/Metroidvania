@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportSpellSO
   spellName: Teleport Lv. 1
   cooldown: 1
-  icon: {fileID: 0}
+  icon: {fileID: -1494351310, guid: c4b6af8f9e235c445b71e2e423b0367e, type: 3}
   range: 5
   playerRadius: 1.5
   obstacleLayer:

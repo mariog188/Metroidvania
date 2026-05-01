@@ -186,6 +186,22 @@ public class Player : MonoBehaviour
 
     }
 
+    public void OnNext(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            magic.NextSpell();
+        }
+    }
+
+    public void OnPrevious(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            magic.PreviousSpell();
+        }
+    }
+
     public void OnSpellcast(InputValue value)
     {
         spellcastPressed = value.isPressed;
