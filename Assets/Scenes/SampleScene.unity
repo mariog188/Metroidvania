@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1070682281}
     m_Modifications:
+    - target: {fileID: 286910044088155020, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
+      propertyPath: normalColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 401773634747811235, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
       propertyPath: m_Name
       value: SpellSlot
@@ -1227,6 +1231,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1070682281}
     m_Modifications:
+    - target: {fileID: 286910044088155020, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
+      propertyPath: normalColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 401773634747811235, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
       propertyPath: m_Name
       value: SpellSlot
@@ -1353,7 +1361,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000958cd89b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -11620,6 +11628,71 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1599390515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2465906369739858470, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7555134708439562590, guid: 14a1a850f36b6544a8d1684e769bafde, type: 3}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617522447546028142, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_Name
+      value: Loot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499222404370529587, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: collectibleSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e878261d9bf5b449bad64d4cd599498, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
 --- !u!1 &1675935796
 GameObject:
   m_ObjectHideFlags: 0
@@ -11773,10 +11846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Magic
   player: {fileID: 1698133794}
   spellUIManager: {fileID: 802164682}
-  availableSpells:
-  - {fileID: 11400000, guid: 0cf9e90568c646e43baf739f7a005f49, type: 2}
-  - {fileID: 11400000, guid: 1e878261d9bf5b449bad64d4cd599498, type: 2}
-  - {fileID: 11400000, guid: 9b7fcac62478e114284c02e31168cc43, type: 2}
+  availableSpells: []
   currentIndex: 1
   nextCastTime: 0
 --- !u!114 &1675935802
@@ -12564,6 +12634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1070682281}
     m_Modifications:
+    - target: {fileID: 286910044088155020, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
+      propertyPath: normalColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 401773634747811235, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
       propertyPath: m_Name
       value: SpellSlot
@@ -12653,6 +12727,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a655afef4aa18544b7c11c2cd23996d, type: 3}
+--- !u!1001 &9065826526314059973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523048008336941767, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617522447546028142, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
+      propertyPath: m_Name
+      value: Loot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfd387049bb654f4da17e900bd2da10e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12668,3 +12799,5 @@ SceneRoots:
   - {fileID: 1266891917}
   - {fileID: 802164686}
   - {fileID: 870074374}
+  - {fileID: 9065826526314059973}
+  - {fileID: 1599390515}

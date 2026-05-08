@@ -24,6 +24,23 @@ public class Magic : MonoBehaviour
         HighLightCurrentSpell();
     }
 
+    public void LearnSpell(SpellSO spell)
+    {
+        Debug.Log($"Learned spell: {spell.name}");
+        if (!availableSpells.Contains(spell))
+        {
+            availableSpells.Add(spell);
+        }
+
+        currentIndex = Mathf.Clamp(currentIndex, 0, availableSpells.Count - 1);
+        spellUIManager.ShowSpells(availableSpells);
+
+        if (availableSpells.Count > 0)
+        {
+            HighLightCurrentSpell();
+        }
+    }
+
     public void NextSpell()
     {
         if (availableSpells.Count == 0)
