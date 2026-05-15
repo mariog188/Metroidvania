@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealSO
   itemName: Heal Lv. 1
   icon: {fileID: 1822345871, guid: c4b6af8f9e235c445b71e2e423b0367e, type: 3}
+  itemSprite: {fileID: 2385265954839553, guid: 36437dfccfdc2e141a52271180dcf44b, type: 3}
   cooldown: 5
   healAmount: 10
   healFXPrefab: {fileID: 2609006041240031542, guid: 5b76dc6910cb24b448069d26269fa4e0, type: 3}
