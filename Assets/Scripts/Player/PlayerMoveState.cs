@@ -14,7 +14,7 @@ public class PlayerMoveState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (SpellcastPressed && magic.CanCast)
+        if (SpellcastPressed && magic.CanCast(magic.CurrentSpell))
         {
             player.ChangeState(player.spellcastState);
         }

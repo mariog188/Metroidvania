@@ -28,4 +28,16 @@ public class SpellUIManager : MonoBehaviour
             slot.SetHighLight(slot.AssignedSpell == activeSpell);
         }
     }
+
+    public void TriggerCooldown(SpellSO spell, float cooldownTime)
+    {
+        foreach (SpellSlot slot in slots)
+        {
+            if (slot.AssignedSpell == spell)
+            {
+                slot.TriggerCooldown(cooldownTime);
+                break;
+            }
+        }
+    }
 }
