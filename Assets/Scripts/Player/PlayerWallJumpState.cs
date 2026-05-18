@@ -1,17 +1,19 @@
 using UnityEngine;
 
-public class PlayerJumpState : PlayerState
+public class PlayerWallJumpState : PlayerState
 {
-    public PlayerJumpState(Player player) : base(player)
+    private float horizontalJumpPercentage = 0.5f;
+    public PlayerWallJumpState(Player player) : base(player)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        anim.SetBool("isJumping", true);
+        anim.SetTrigger("isWallJumping");
 
-        rigidbody2D.linearVelocity = new Vector2(rigidbody2D.linearVelocity.x, player.jumpForce);
+        rigidbody2D.linearVelocity = Vector2.zero;
+        rigidbody2D.linearVelocity = new Vector2(-player.facingDirection * horizontalJumpPercentage, 1f) * player.jumpForce;
 
         JumpPressed = false;
         JumpReleased = false;
@@ -19,10 +21,8 @@ public class PlayerJumpState : PlayerState
 
     public override void Update()
     {
-        base.Update();
-
-        if (JumpPressed && player.isTouchingWall) 
-        { 
+        if (JumpPressed && player.isTouchingWall)
+        {
             player.ChangeState(player.wallJumpState);
         }
         else if (player.isGrounded && rigidbody2D.linearVelocity.y <= 0.1)
@@ -33,24 +33,16 @@ public class PlayerJumpState : PlayerState
 
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
-
         player.ApplyVariableGravity();
-
         if (JumpReleased && rigidbody2D.linearVelocity.y > 0)
         {
             rigidbody2D.linearVelocity = new Vector2(rigidbody2D.linearVelocity.x, rigidbody2D.linearVelocity.y * player.jumpCutMultiplier);
             JumpReleased = false;
         }
-
-        float speed = RunPressed ? player.runSpeed : player.walkSpeed;
-        float targetSpeed = speed * MoveInput.x;
-        rigidbody2D.linearVelocity = new Vector2(targetSpeed, rigidbody2D.linearVelocity.y);
     }
 
     public override void Exit()
     {
-        base.Exit();
-        anim.SetBool("isJumping", false);
+        anim.SetBool("isWallJumping", false);
     }
 }

@@ -78,6 +78,8 @@ public class Magic : MonoBehaviour
 
     public bool CanCast(SpellSO spellSO)
     {
+        if (spellSO == null)
+            return false;
         return Time.time >= spellCooldowns[spellSO];
     }
 
