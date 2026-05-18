@@ -23,14 +23,20 @@ public class PlayerSlideState : PlayerState
     {
         base.Update();
 
-        if (sliderTimer > 0)
+
+        if (JumpPressed && !player.CheckForCeiling())
+        {
+            player.ChangeState(player.jumpState);
+        }
+        else if (sliderTimer > 0)
         {
             sliderTimer -= Time.deltaTime;
         }
         else if (slideStoptimer <= 0)
         {
             slideStoptimer = player.slideStopDuration;
-        } else
+        }
+        else
         {
             slideStoptimer -= Time.deltaTime;
             if (slideStoptimer <= 0)
@@ -38,7 +44,8 @@ public class PlayerSlideState : PlayerState
                 if (player.CheckForCeiling() || MoveInput.y <= -0.1f)
                 {
                     player.ChangeState(player.crouchState);
-                } else
+                }
+                else
                 {
                     player.ChangeState(player.idleState);
                 }

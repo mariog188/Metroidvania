@@ -9,9 +9,7 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("o IdleState");
         anim.SetBool("isIdle", true);
-        rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y);
     }
 
     public override void Update()
@@ -39,6 +37,7 @@ public class PlayerIdleState : PlayerState
         {
             player.ChangeState(player.crouchState);
         }
+        rigidbody2D.linearVelocity = new Vector2(0, rigidbody2D.linearVelocity.y);
     }
 
     public override void Exit()
