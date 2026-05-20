@@ -31,9 +31,7 @@ public class Loot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision entered loot area: " + collision);
         player = collision.GetComponent<Player>();
-        Debug.Log("Player entered loot area: " + player);
         if (player == null || !canBeCollected)
         {
             return;

@@ -18,12 +18,10 @@ public class PlayerAttackState : PlayerState
     {
         if (Mathf.Abs(MoveInput.x) > .1f)
         {
-            Debug.Log("Move input detected, transitioning to MoveState");
             player.ChangeState(player.moveState);
         }
          else
         {
-            Debug.Log("No move input detected, transitioning to IdleState");
             player.ChangeState(player.idleState);
         }
     }
@@ -31,7 +29,6 @@ public class PlayerAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Exiting AttackState");
         anim.SetBool("isAttacking", false);
     }
 }

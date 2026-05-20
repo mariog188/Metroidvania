@@ -11983,7 +11983,7 @@ MonoBehaviour:
     m_Bits: 64
   isGrounded: 0
   wallCheck: {fileID: 1546621664}
-  wallCheckRadius: 0.5
+  wallCheckRadius: 0.4
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -12287,11 +12287,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.5039623, y: 6.9270997}
+    - - {x: 31.304274, y: 13.080041}
+      - {x: -2.5039623, y: 6.9270997}
       - {x: -16.450264, y: 5.9508553}
       - {x: -17.037865, y: -5.4999843}
       - {x: 53.81373, y: -7.3558254}
-      - {x: 54.837154, y: 5.8335433}
+      - {x: 54.950867, y: 13.395273}
   m_UseDelaunayMesh: 1
 --- !u!1 &1982880582
 GameObject:

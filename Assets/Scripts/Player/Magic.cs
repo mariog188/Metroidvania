@@ -26,7 +26,6 @@ public class Magic : MonoBehaviour
 
     public void LearnSpell(SpellSO spell)
     {
-        Debug.Log($"Learned spell: {spell.name}");
         if (!availableSpells.Contains(spell))
         {
             availableSpells.Add(spell);
@@ -44,6 +43,7 @@ public class Magic : MonoBehaviour
         {
             HighLightCurrentSpell();
         }
+        player.spellcastPressed = false;
     }
 
     public void NextSpell()

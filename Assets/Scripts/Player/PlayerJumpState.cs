@@ -21,7 +21,10 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
-        if (JumpPressed && player.isTouchingWall) 
+        if (!player.isGrounded && player.isTouchingWall && MoveInput.x == player.facingDirection && rigidbody2D.linearVelocity.y < 0)
+        { 
+            player.ChangeState(player.wallSlideState);
+        } else if (JumpPressed && player.isTouchingWall) 
         { 
             player.ChangeState(player.wallJumpState);
         }
